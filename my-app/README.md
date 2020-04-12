@@ -47,7 +47,28 @@ Inside that directory, you can run several commands:
     and scripts into the app directory. If you do this, you can’t go back!
 
 We suggest that you begin by typing:
+
 ```sh
   cd my-app
   npm start
 ```
+
+### Creation of the client 
+
+Installation of the Apollo Client on our app 
+
+```sh
+
+    npm install apollo-boost react-apollo graphql
+
+```
+
+- apollo-boost: Package containing everything you need to set up Apollo Client
+
+- react-apollo: View layer integration for React
+
+- graphql: Also parses your GraphQL queries
+
+
+### Creation of the server
+
