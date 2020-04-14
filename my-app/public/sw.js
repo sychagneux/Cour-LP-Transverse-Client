@@ -1,32 +1,9 @@
-console.log("Service Worker logged")
+console.log("Your ServiceWorker! 👍 ");
 
-
-var CACHE_NAME = 'first-atempt-to-cache';
-var urlsToCache = [
-  '/',
-];
-
-self.addEventListener('install', function(event) {
-  // Perform install steps
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(function(cache) {
-        console.log('Opened cache');
-        return cache.addAll(urlsToCache);
-      })
-  );
+self.addEventListener("install", function(evt) {
+  console.log("The service worker is being installed.");
 });
 
-self.addEventListener('fetch', function(event) {
-    event.respondWith(
-      caches.match(event.request)
-        .then(function(response) {
-          // Cache hit - return response
-          if (response) {
-            return response;
-          }
-          return fetch(event.request);
-        }
-      )
-    );
-  });
+self.addEventListener("fetch", function(evt) {
+  console.log("The service worker is serving the asset.");
+});
