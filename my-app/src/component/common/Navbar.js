@@ -1,10 +1,7 @@
 import React, { Component } from "react";
-import logo from "../../project.svg";
-import { FiMenu } from "react-icons/fi";
-import { FaRegUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-class Navbar extends React.Component {
+class Navbar extends Component {
 
   render() {
     return (

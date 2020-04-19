@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import "./style/App.css";
 import HomePage from "./component/common/Home";
 import UserPage from "./component/user/UserPage";
@@ -13,9 +13,9 @@ import Navbar from "./component/common/Navbar";
 
 function App() {
   return (
-    <div className="App">   
-    <Header />   
-      <Navbar/>
+    <div className="App">
+      <Header />
+      <Navbar />
       <Switch>
         <Route path="/home">
           <HomePage />
