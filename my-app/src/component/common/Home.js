@@ -20,7 +20,7 @@ class HomePage extends Component {
   render() {
     return (
       <div className="container">
-        <h3>HomePage</h3>
+        <h4>HomePage</h4>
         <p>Now we have:</p>
         <ul>
           <li>A server with GraphQL enable</li>

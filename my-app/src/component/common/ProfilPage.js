@@ -1,9 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 class ProfilPage extends Component {
-    render() {
-      return <h2>My page</h2>;
-    }
+  render() {
+    return (
+      <div className="container">
+        <h4>My page</h4>
+      </div>
+    );
+  }
 }
 
 export default ProfilPage;
