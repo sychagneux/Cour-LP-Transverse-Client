@@ -31,6 +31,8 @@ body{
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-bottom: 1px solid gray; 
+  background: #444552;
 }
 
 .navbar-icon{
@@ -127,7 +129,7 @@ ul{
 
 .project-list-item{
   border-radius: 12px;
-  padding: .25em 1.5em;
-  border: 1px solid;
+  padding: .25em 1.5em;    
+  background: #444552;
   margin-bottom: 1em;
 }

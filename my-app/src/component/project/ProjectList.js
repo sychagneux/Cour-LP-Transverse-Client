@@ -9,7 +9,9 @@ const GET_PROJECTS = gql`
     projects {
       _id
       name
-      description
+      tasks{
+        name
+      }
     }
   }
 `;
@@ -24,11 +26,11 @@ function Projects() {
     <ul>
       {data.projects.map(item =>
         <li key={item._id} value={item.name} className="project-list-item">
-          <p>
+          <h3>
             {item.name}
-          </p>
+          </h3>
           <p>
-            {item.description}
+            {item.tasks.length} tache(s) dans ce projet.
           </p>
         </li>
       )}
@@ -40,9 +42,7 @@ class ProjetList extends Component {
   render() {
     return (
       <div className="container">
-        <h4 style={{
-          marginLeft: ".5em"
-        }}>List of all projects.</h4>
+        <h4>List of all projects.</h4>
         <Projects />
       </div>
     );
