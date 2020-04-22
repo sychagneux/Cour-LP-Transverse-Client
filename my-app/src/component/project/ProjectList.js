@@ -47,7 +47,7 @@ function Projects(arg) {
           </div>
         </li>
       )}
-      <li className="project-list-item">
+      <li className="project-list-item" onClick={() => handleCreateNewProject()}>
           <div className="project-item-action" style={{
             padding: "1em"
           }}>
@@ -67,6 +67,10 @@ function Projects(arg) {
 function changeRoute(props, route) {
   console.log(props, route);
   props.history.push(route)
+}
+
+function handleCreateNewProject() {
+  alert("Development information: \n Call a mutation to create a new project");
 }
 
 function callMutation() {
