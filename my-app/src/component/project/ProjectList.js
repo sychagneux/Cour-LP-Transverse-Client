@@ -42,7 +42,7 @@ function Projects(arg) {
             </p>
           </div>
           <div className="project-item-action">
-            <IoIosClose onClick={() => callMutation() }/>
+            <IoIosClose onClick={() => callMutation() } fontSize="1.75em"/>
             <button className="btn-primary" onClick={() => changeRoute(arg.props,("/project/" + item._id.toString()) )}>View</button>
           </div>
         </li>
