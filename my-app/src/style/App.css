@@ -32,7 +32,7 @@ body{
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid gray; 
-  background: #444552;
+  background: #323640;
 }
 
 .navbar-icon{
@@ -86,7 +86,8 @@ body{
   align-items: center;
 }
 .nav-list p {
-  margin:0;
+  margin:0; 
+  font-size: 0.75em;
 }
 
 .container{
@@ -130,6 +131,6 @@ ul{
 .project-list-item{
   border-radius: 12px;
   padding: .25em 1.5em;    
-  background: #444552;
+  background: #323640;
   margin-bottom: 1em;
 }

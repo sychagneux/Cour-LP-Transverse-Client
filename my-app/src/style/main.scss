@@ -1,0 +1,26 @@
+.project-list-item{
+    display: flex;
+    flex-direction: row;
+    .project-item-action{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: flex-end;
+    }
+    .project-item-detail{
+        flex: 1;
+    }
+}
+
+button{
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    text-transform: capitalize;
+    line-height: 1.25em;
+    padding: .5em 1em;
+    &.btn-primary{
+        background: lightseagreen;
+        color: white;
+    }
+}
