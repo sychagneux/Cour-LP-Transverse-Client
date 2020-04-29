@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
 import { IoIosClose } from "react-icons/io";
 import { FaPlusSquare } from "react-icons/fa";
 import {style } from "../../style/main.scss";
-import { withRouter, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 //npm install graphql-tag
 //npm install @apollo/react-hooks
 
@@ -20,13 +20,12 @@ const GET_PROJECTS = gql`
   }
 `;
 
+// Project QUERY
 function Projects(arg) {
   const { loading, error, data } = useQuery(GET_PROJECTS);
 
   if (loading) return "Loading...";
   if (error) return `Error! ${error.message}`;
-
-
 
   return (
     <ul>
@@ -78,11 +77,6 @@ function callMutation() {
 }
 
 class ProjetList extends React.Component {
-
-  constructor(props){
-    super(props);
-  }
-
   render() {
     return (
       <div className="container">

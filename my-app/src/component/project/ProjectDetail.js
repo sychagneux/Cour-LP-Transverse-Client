@@ -12,6 +12,7 @@ const GET_PROJECT = gql`
       name
       description
       tasks {
+        _id
         name
         description
         status
@@ -24,6 +25,8 @@ function Project({ arg, id }) {
   const { loading, error, data } = useQuery(GET_PROJECT, {
     variables: { id }
   });
+
+  console.log(arg, id)
 
   if (loading) return "Loading...";
   if (error) return `Error! ${error.message}`;
@@ -40,7 +43,7 @@ function Project({ arg, id }) {
       </p>
       <ul>
         {project.tasks.map(item =>
-          <li key={item._id} value={item.name} className="project-list-item">
+          <li key={item._id} value={item.name} className="project-list-item" onClick={() => changeRoute(arg, ("/task/" + item._id.toString()))}>
             <div className="project-item-detail">
               <h3>
                 {item.name}
@@ -77,6 +80,22 @@ function Project({ arg, id }) {
           </div>
         </li>
       </ul>
+
+      {project.tasks.length === 0 &&
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            flexDirection: "column"
+          }}
+        >
+          <img
+            width="10%"
+            alt="Not found"
+            src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/no_data_qbuo.svg"
+          />
+          <h4>This project did not contain any task.</h4>
+        </div>}
     </div>
   );
 }
@@ -101,7 +120,7 @@ class ProjetDetail extends Component {
     console.log(this);
     return (
       <div className="container">
-        <Project id={this.props.match.params.id} />
+        <Project arg={this.props} id={this.props.match.params.id} />
       </div>
     );
   }

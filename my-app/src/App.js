@@ -10,6 +10,7 @@ import ProjectList from "./component/project/ProjectList";
 import ProjectDetail from "./component/project/ProjectDetail";
 import Header from "./component/common/Header";
 import Navbar from "./component/common/Navbar";
+import ProjectCreate from "./component/project/ProjectCreate";
 
 function App() {
   return (
@@ -36,6 +37,9 @@ function App() {
         </Route>
         <Route path="/project/:id">
           <ProjectDetail />
+        </Route>
+        <Route path="/new-project">
+          <ProjectCreate />
         </Route>
       </Switch>
       <Navbar />
