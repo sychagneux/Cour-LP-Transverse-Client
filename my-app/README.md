@@ -72,3 +72,8 @@ Installation of the Apollo Client on our app
 
 ### Creation of the server
 
+You have a minimal configuration to start the projet :
+
+- index.js: the main file that contain the ReactDOM
+
+- app.js and app.test.js (unit test): App.js is the first component of your app 
