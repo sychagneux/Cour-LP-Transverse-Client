@@ -1,74 +1,68 @@
 # Cour-LP-React-PWA
 
-Going to create a React App
-Build a PWA installable APP
-With a little design framework 
+Client - part 3 - Add a router
 
-## First
+## Router
 
-Via npm, we gonna clone the Create-React-App template purposed by Facebook. 
+We gonna install the react router, install if with the following command:
 
-### npx
-
-```sh
-npx create-react-app my-app
+```
+$> npm install react-router-dom
 ```
 
-### or via npm
+Init all these components:
 
-```sh
-npm init react-app my-app
-```
+- HomePage.js
+- ProjectList.js
+- ProjectDetail.js
+- TaskList.js.js
+- TaskDetail.js
+- ProfilPage.js
+- UserPage.js
 
-## Second 
+Sample of a basic component:
+```js
 
-Now we have the app ! Cool, 
-What you can do for now: 
+import React, { Component } from 'react';
 
-Success! Created my-app at C:\Users\ppier\Developpement\Cour-LP-React-PWA\my-app
-Inside that directory, you can run several commands:
+class SampleComponent extends Component {
+    render() {
+      return <div>My first component</div>;
+    }
+}
 
-```sh
-  npm start
-``` 
-    Starts the development server.
-```sh
-  npm run build
-```
-    Bundles the app into static files for production.
-```sh
-  npm test
-```
-    Starts the test runner.
-```sh
-  npm run eject
-```
-    Removes this tool and copies build dependencies, configuration files
-    and scripts into the app directory. If you do this, you can’t go back!
-
-We suggest that you begin by typing:
-
-```sh
-  cd my-app
-  npm start
-```
-
-### Creation of the client 
-
-Installation of the Apollo Client on our app 
-
-```sh
-
-    npm install apollo-boost react-apollo graphql
+export default SampleComponent;
 
 ```
 
-- apollo-boost: Package containing everything you need to set up Apollo Client
+The router will allow us to manage our route of the app. 
 
-- react-apollo: View layer integration for React
+In the `app.js` file we gonna add:
 
-- graphql: Also parses your GraphQL queries
+```xml
+  <Switch>
+    <Route path="/home">
+      <HomePage />
+    </Route>
+    <Route path="/me">
+      <ProfilPage />
+    </Route>
+    <Route path="/user/:id">
+      <UserPage />
+    </Route>
+    <Route path="/tasks">
+      <TaskList />
+    </Route>
+    <Route path="/task/:id">
+      <TaskDetail />
+    </Route>
+    <Route path="/projects/">
+      <ProjectList />
+    </Route>
+    <Route path="/project/:id">
+      <ProjectDetail />
+    </Route>
+  </Switch> 
+```
 
-
-### Creation of the server
-
+Now if we reload the server we can call any route from the navigator and each with send us to **the component under it**.
