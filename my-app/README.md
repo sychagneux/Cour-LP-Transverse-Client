@@ -1,74 +1,27 @@
 # Cour-LP-React-PWA
 
-Going to create a React App
-Build a PWA installable APP
-With a little design framework 
+This part add some improvment to the app 
 
-## First
+Add a `NavBar` component, that permit to navigate between routes.
 
-Via npm, we gonna clone the Create-React-App template purposed by Facebook. 
+Also add a `SideBar`, that open a panel and display all route
 
-### npx
+For example, you can use the state of the component to control an open dialog, and a button to toggle it.
 
-```sh
-npx create-react-app my-app
+``` js
+  this.state={
+    navbarOpen: false
+  }
 ```
 
-### or via npm
+An exemple of a function that permit to toggle a boolean from the `state`
 
-```sh
-npm init react-app my-app
-```
-
-## Second 
-
-Now we have the app ! Cool, 
-What you can do for now: 
-
-Success! Created my-app at C:\Users\ppier\Developpement\Cour-LP-React-PWA\my-app
-Inside that directory, you can run several commands:
-
-```sh
-  npm start
+``` js
+  toggleNavbar(){
+    this.setState({
+      navbarOpen: !this.state.navbarOpen
+    })
+  }
 ``` 
-    Starts the development server.
-```sh
-  npm run build
-```
-    Bundles the app into static files for production.
-```sh
-  npm test
-```
-    Starts the test runner.
-```sh
-  npm run eject
-```
-    Removes this tool and copies build dependencies, configuration files
-    and scripts into the app directory. If you do this, you can’t go back!
 
-We suggest that you begin by typing:
-
-```sh
-  cd my-app
-  npm start
-```
-
-### Creation of the client 
-
-Installation of the Apollo Client on our app 
-
-```sh
-
-    npm install apollo-boost react-apollo graphql
-
-```
-
-- apollo-boost: Package containing everything you need to set up Apollo Client
-
-- react-apollo: View layer integration for React
-
-- graphql: Also parses your GraphQL queries
-
-
-### Creation of the server
-
+You can also add some style to display correctly these component.
