@@ -1,74 +1,63 @@
 # Cour-LP-React-PWA
 
-Going to create a React App
-Build a PWA installable APP
-With a little design framework 
+Client 4 - GraphQL first query 
 
-## First
+We gonna get the first query from our server.
 
-Via npm, we gonna clone the Create-React-App template purposed by Facebook. 
 
-### npx
+Since the last release apollo use react hooks to check query on use mutation 
 
-```sh
-npx create-react-app my-app
+All these information are explained here :
+
+https://www.apollographql.com/docs/react/api/react-hooks/
+
+On your `Home.js`, import the `useQuery` component.
+
+``` js
+import { useQuery } from "@apollo/react-hooks";
+import gql from "graphql-tag";
 ```
 
-### or via npm
+We gonna make an exemple to check if graphql work with the client ( the server has to be started ).
 
-```sh
-npm init react-app my-app
+On your server, you need to have a simple query, that return a boolean, or a string, just to check the data transfer
+
+
+
+``` js
+const GET_GRAPHQL_INFO = gql`
+  {
+    userSchemaAssert
+  }
+`;
 ```
 
-## Second 
-
-Now we have the app ! Cool, 
-What you can do for now: 
-
-Success! Created my-app at C:\Users\ppier\Developpement\Cour-LP-React-PWA\my-app
-Inside that directory, you can run several commands:
-
-```sh
-  npm start
-``` 
-    Starts the development server.
-```sh
-  npm run build
-```
-    Bundles the app into static files for production.
-```sh
-  npm test
-```
-    Starts the test runner.
-```sh
-  npm run eject
-```
-    Removes this tool and copies build dependencies, configuration files
-    and scripts into the app directory. If you do this, you can’t go back!
-
-We suggest that you begin by typing:
-
-```sh
-  cd my-app
-  npm start
-```
-
-### Creation of the client 
-
-Installation of the Apollo Client on our app 
-
-```sh
-
-    npm install apollo-boost react-apollo graphql
-
-```
-
-- apollo-boost: Package containing everything you need to set up Apollo Client
-
-- react-apollo: View layer integration for React
-
-- graphql: Also parses your GraphQL queries
+Create your hooks, it will return juste a little html component that display the error.
 
 
-### Creation of the server
+``` js 
+
+// Your first graphql hooks
+function CheckConfig() {
+  const { loading, error, data, networkStatus } = useQuery(GET_GRAPHQL_INFO);
+
+  if (loading) return <span className="status-warning">LOADING</span>;
+  if (error) return <span className="status-error">ERROR</span>;
+  return <span className="status-ok">OK</span>;
+}
+
+
+class HomePage extends Component {	
+
+  ```
+
+To call your hooks, call it just like a regular component
+
+``` js
+  <p>
+  GraphQL status: <CheckConfig />
+  </p>  
+```  
+
+If it display Ok, your connection with our server works ! if not.. 
 
