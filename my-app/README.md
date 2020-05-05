@@ -2,7 +2,7 @@
 
 Client - part 3 - Add a router
 
-## Router
+## Init of components
 
 We gonna install the react router, install if with the following command:
 
@@ -10,7 +10,11 @@ We gonna install the react router, install if with the following command:
 $> npm install react-router-dom
 ```
 
-Init all these components:
+Initialize all these components with some datas.
+
+For example a text which describe the component. 
+
+This will allow us to call component between routes.
 
 - HomePage.js
 - ProjectList.js
@@ -35,9 +39,33 @@ export default SampleComponent;
 
 ```
 
+## Creation of the router
+
 The router will allow us to manage our route of the app. 
 
-In the `app.js` file we gonna add:
+In `index.js` import the following component:
+
+```js
+import { BrowserRouter } from "react-router-dom";
+```
+
+Encapsulate the `<app>` component with the router.
+
+```xml
+<BrowserRouter>
+```
+
+### Route creation
+
+In the `app.js` file 
+
+Import these components.
+
+```js
+import { Switch, Route } from "react-router-dom";
+```
+
+In the `app.js` file we gonna add the switch, and create all the route.
 
 ```xml
   <Switch>
