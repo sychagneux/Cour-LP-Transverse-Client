@@ -16,32 +16,34 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Switch className="flex-1">
-        <Route path="/home">
-          <HomePage />
-        </Route>
-        <Route path="/me">
-          <ProfilPage />
-        </Route>
-        <Route path="/user/:id">
-          <UserPage />
-        </Route>
-        <Route path="/tasks">
-          <TaskList />
-        </Route>
-        <Route path="/task/:id">
-          <TaskDetail />
-        </Route>
-        <Route path="/projects/">
-          <ProjectList />
-        </Route>
-        <Route path="/project/:id">
-          <ProjectDetail />
-        </Route>
-        <Route path="/new-project">
-          <ProjectCreate />
-        </Route>
-      </Switch>
+      <div className="container">
+        <Switch className="flex-1">
+          <Route path="/home">
+            <HomePage />
+          </Route>
+          <Route path="/me">
+            <ProfilPage />
+          </Route>
+          <Route path="/user/:id">
+            <UserPage />
+          </Route>
+          <Route path="/tasks">
+            <TaskList />
+          </Route>
+          <Route path="/task/:id">
+            <TaskDetail />
+          </Route>
+          <Route path="/projects/">
+            <ProjectList />
+          </Route>
+          <Route path="/project/:id">
+            <ProjectDetail />
+          </Route>
+          <Route path="/new-project">
+            <ProjectCreate />
+          </Route>
+        </Switch>
+      </div>
       <Navbar />
     </div>
   );
