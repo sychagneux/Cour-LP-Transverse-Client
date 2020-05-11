@@ -20,6 +20,7 @@ const GET_PROJECTS = gql`
   }
 `;
 
+
 // Project QUERY
 function Projects(arg) {
   const { loading, error, data } = useQuery(GET_PROJECTS);
@@ -46,7 +47,7 @@ function Projects(arg) {
           </div>
         </li>
       )}
-      <li className="project-list-item" onClick={() => handleCreateNewProject()}>
+      <li className="project-list-item" onClick={() => handleCreateNewProject(arg.props)}>
           <div className="project-item-action" style={{
             padding: "1em"
           }}>
@@ -68,7 +69,9 @@ function changeRoute(props, route) {
   props.history.push(route)
 }
 
-function handleCreateNewProject() {
+function handleCreateNewProject(props) {
+  console.log(props)
+  props.history.push('/new-project')
   alert("Development information: \n Call a mutation to create a new project");
 }
 

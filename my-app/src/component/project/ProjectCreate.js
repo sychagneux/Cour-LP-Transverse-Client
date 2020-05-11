@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import gql from "graphql-tag";
 
 
-const ADD_TODO = gql`
+const ADD_PROJECT = gql`
   mutation CreateProject($name: String! ,$description: String!) {
     createProject(name: $name, description: $description)
   }
@@ -14,7 +14,7 @@ const ADD_TODO = gql`
 function AddProject() {
     let name;
     let description;
-    const [addProject, { data }] = useMutation(ADD_TODO);
+    const [addProject, { data }] = useMutation(ADD_PROJECT);
   
     return (
       <div>
