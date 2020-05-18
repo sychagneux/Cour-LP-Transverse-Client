@@ -2,7 +2,9 @@ var CACHE_NAME = 'basic-sw-cache-v1';
 var urlsToCache = [
   '/index.html',
   '/assets/logo/project.svg',
-  '*.*'
+  'static/js/bundle.js',
+  'static/js/0.chunk.js',
+  'static/js/main.chunk.js',
 ];
 
 self.addEventListener('install', function(event) {

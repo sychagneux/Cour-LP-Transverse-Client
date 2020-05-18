@@ -13,6 +13,10 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
+/*
+
+This assert permit to test the server
+
 client.query({
     query: gql`
     query Assert{
@@ -20,7 +24,7 @@ client.query({
     } 
     `
   })
-  .then(result => console.log("Reponse from graphql:", result));
+  .then(result => console.log("Reponse from graphql:", result));*/
 
 ReactDOM.render(
   <BrowserRouter>
