@@ -1,74 +1,68 @@
 # Cour-LP-React-PWA
 
-Going to create a React App
-Build a PWA installable APP
-With a little design framework 
+Create a mutation 
 
-## First
+[This file implement a mutation](https://github.com/pipic1/Cour-LP-Transverse-Client/blob/client-7-mutation/my-app/src/component/project/ProjectCreate.js)
 
-Via npm, we gonna clone the Create-React-App template purposed by Facebook. 
+We gonna use the component useMutation
 
-### npx
+Creation of the mutation, that you can run on the playground (localhost:5000)
 
-```sh
-npx create-react-app my-app
+``` js
+const ADD_PROJECT = gql`
+  mutation CreateProject($name: String! ,$description: String!) {
+    createProject(name: $name, description: $description)
+  }
+`;
 ```
 
-### or via npm
+Create a hooks React, and make it return a form, you can implement many type of input.
+[This page can help](https://fr.reactjs.org/docs/forms.html)
 
-```sh
-npm init react-app my-app
+In it you can create variables, that permit to stock information from the input:
+
+``` js
+function AddProject() {
+    let name;
+    let description;
+    const [addProject, { data }] = useMutation(ADD_PROJECT);
+
+    return ( YOUR FORM HERE );
 ```
 
-## Second 
+On your form tag, you will re-implement is onSubmit event: 
 
-Now we have the app ! Cool, 
-What you can do for now: 
-
-Success! Created my-app at C:\Users\ppier\Developpement\Cour-LP-React-PWA\my-app
-Inside that directory, you can run several commands:
-
-```sh
-  npm start
-``` 
-    Starts the development server.
-```sh
-  npm run build
-```
-    Bundles the app into static files for production.
-```sh
-  npm test
-```
-    Starts the test runner.
-```sh
-  npm run eject
-```
-    Removes this tool and copies build dependencies, configuration files
-    and scripts into the app directory. If you do this, you can’t go back!
-
-We suggest that you begin by typing:
-
-```sh
-  cd my-app
-  npm start
+``` html
+    <form
+      onSubmit={e => {
+        e.preventDefault();
+        addProject({ variables: { name: name.value, description: description.value } });
+        name.value = '';
+        description.value = '';
+      }} >
+      
+      Your input, you need to add reference to the variable created before on the hooks.
+      <input>      
+      <input>      
+      <input>
+      
+   </form>
+>
 ```
 
-### Creation of the client 
+To see your mutation simply, call it in a render's component function.
 
-Installation of the Apollo Client on our app 
-
-```sh
-
-    npm install apollo-boost react-apollo graphql
+``` js
+class ProjetDetail extends Component {
+  render() {
+    console.log(this);
+    return (
+      <div className="container">
+        <h4>Create a new project</h4>
+        <AddProject />
+      </div>
+    );
+  }
+}
 
 ```
-
-- apollo-boost: Package containing everything you need to set up Apollo Client
-
-- react-apollo: View layer integration for React
-
-- graphql: Also parses your GraphQL queries
-
-
-### Creation of the server
-
