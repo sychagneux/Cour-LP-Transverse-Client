@@ -4,6 +4,9 @@ Going to create a React App
 Build a PWA installable APP
 With a little design framework 
 
+<p>&nbsp</p>
+<p>&nbsp</p>
+
 ## 1️⃣ Clone react-app repo
 
 Via npm, we gonna clone the Create-React-App template purposed by Facebook. 
