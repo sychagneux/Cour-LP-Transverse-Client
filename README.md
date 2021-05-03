@@ -4,7 +4,7 @@ Going to create a React App
 Build a PWA installable APP
 With a little design framework 
 
-##1️⃣ Clone react-app repo
+## 1️⃣ Clone react-app repo
 
 Via npm, we gonna clone the Create-React-App template purposed by Facebook. 
 
@@ -20,6 +20,9 @@ npx create-react-app my-app
 npm init react-app my-app
 ```
 
+<p>&nbsp</p>
+<p>&nbsp</p>
+
 ## 2️⃣ Common commands
 
 Now we have the app ! Cool, 
@@ -32,6 +35,8 @@ Inside that directory, you can run several commands:
   npm start
 ``` 
 Starts the development server.
+
+<p>&nbsp</p>
     
    
 ```sh
@@ -49,6 +54,8 @@ Starts the test runner.
 ```
 Removes this tool and copies build dependencies, configuration files
 and scripts into the app directory. If you do this, you can’t go back!
+
+<p>&nbsp</p>
 
 We suggest that you begin by typing:
 
