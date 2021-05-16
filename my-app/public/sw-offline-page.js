@@ -27,6 +27,21 @@ self.addEventListener('fetch', function(evt) {
   }));
 });
 
+//Example pour notification push ==> https://webpushdemo.azurewebsites.net/
+self.addEventListener('push', function(event) {
+  event.waitUntil(
+      registration.showNotification('Project App notification TEST', {
+          body: event.data ? event.data.text() : 'no payload',
+          icon: 'my-app/public/assets/logo/mipmap-hdpi/ic_project.png'
+      })
+  );
+});
+
+self.addEventListener('notificationclick', function(event) {
+  event.notification.close();
+  event.waitUntil(clients.openWindow('http://localhost:3006/projects'));
+});
+
 // Open a cache and use `addAll()` with an array of assets to add all of them
 // to the cache. Return a promise resolving when all the assets are added.
 function precache() {
