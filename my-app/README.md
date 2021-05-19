@@ -25,3 +25,32 @@ An exemple of a function that permit to toggle a boolean from the `state`
 ``` 
 
 You can also add some style to display correctly these component.
+
+To navigate between route, we gonna use:
+
+``` js
+import { Link } from "react-router-dom";
+
+``` 
+
+Add then call the Link component :
+
+``` js
+<Link to="/home">Home</Link>
+
+``` 
+
+**Don't forget** to call in the index.js file:
+
+
+
+``` js
+import { BrowserRouter } from "react-router-dom";
+``` 
+
+and encapsulate your app with the previous component BrowserRouter
+
+``` js
+  <BrowserRouter>
+
+``` 
