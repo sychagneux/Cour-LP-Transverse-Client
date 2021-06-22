@@ -26,13 +26,11 @@ function Project({ arg, id }) {
     variables: { id }
   });
 
-  console.log(arg, id)
-
   if (loading) return "Loading...";
   if (error) return `Error! ${error.message}`;
 
   const project = data.project;
-  console.log("Data received from Project: ", project);
+  console.log(project.tasks)
   return (
     <div>
       <h2>
@@ -41,6 +39,7 @@ function Project({ arg, id }) {
       <p>
         {project.description}
       </p>
+      {project.tasks != null ? 
       <ul>
         {project.tasks.map(item =>
           <li key={item._id} value={item.name} className="project-list-item" onClick={() => changeRoute(arg, ("/task/" + item._id.toString()))}>
@@ -66,23 +65,12 @@ function Project({ arg, id }) {
             </div>
           </li>
         )}
-        <li className="project-list-item" onClick={callMutation}>
-          <div
-            className="project-item-action"
-            style={{
-              padding: "1em"
-            }}
-          >
-            <FaPlusSquare fontSize="1.5em" />
-          </div>
-          <div className="project-item-detail">
-            <h3>Add new task</h3>
-          </div>
+        <li className="" >
+          
         </li>
       </ul>
-
-      {project.tasks.length === 0 &&
-        <div
+    :
+    <div
           style={{
             display: "flex",
             alignItems: "center",
@@ -95,7 +83,18 @@ function Project({ arg, id }) {
             src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/no_data_qbuo.svg"
           />
           <h4>This project did not contain any task.</h4>
-        </div>}
+        </div>
+    }
+      <div
+        className="project-list-item"
+        style={{
+          padding: "1em"
+        }}
+        onClick={() => callMutationToAddTask(arg,project)}
+      >
+        <FaPlusSquare fontSize="1.5em" />
+        <h3 className="button-new-task">Add new task</h3>
+      </div>
     </div>
   );
 }
@@ -106,18 +105,19 @@ function callMutationToValidateTask() {
 function callMutationToCancelTask() {
   alert("Development information: \n Call a mutation to cancel this task");
 }
-function callMutation() {
-  alert("Development information: \n Call a mutation to add a new task");
+function callMutationToAddTask(props,projet) {
+   props.history.push({
+    pathname: "/new-task",
+    state: {project: projet}
+  })
 }
 
 function changeRoute(props, route) {
-  console.log(props, route);
   props.history.push(route);
 }
 
 class ProjetDetail extends Component {
   render() {
-    console.log(this);
     return (
       <div className="container">
         <Project arg={this.props} id={this.props.match.params.id} />

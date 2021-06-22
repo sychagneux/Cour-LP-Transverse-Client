@@ -5,28 +5,28 @@ import gql from "graphql-tag";
 import { useHistory } from "react-router-dom";
 
 
-const ADD_PROJECT = gql`
-  mutation CreateProject($name: String! ,$description: String!) {
-    createProject(name: $name, description: $description){
-      name
-      description
-    }
+const ADD_TASK = gql`
+  mutation AddTaskToProject($_id: ID!,$input: TaskInput!) {
+    addTaskToProject(_id: $_id, input: $input)
   }
 `;
 
 
-function AddProject() {
+function AddTask({project}) {
     let name;
     let description;
+    let duration;
+    let projectId = project._id;
     let history = useHistory();
-    const [addProject, { data }] = useMutation(ADD_PROJECT);
+    const [addTask, { data }] = useMutation(ADD_TASK);
+    console.log(projectId)
   
     return (
       <div>
         <form
           onSubmit={e => {
             e.preventDefault();
-            addProject({ variables: { name: name.value, description: description.value } });
+            addTask({ variables: { _id: projectId, input: {name: name.value, description: description.value, duration: duration.value }}});
             history.push("/projects");
           }}
         >
@@ -42,24 +42,31 @@ function AddProject() {
             description = node;
           }}
         />
+        <p>Duration:</p>
+        <input
+          ref={node => {
+            duration = node;
+          }}
+        />
         <div className="margin-v-m">
 
-        <button type="submit" className="btn-primary">Create project</button>
+        <button type="submit" className="btn-primary">Create Task</button>
         </div>
         </form>
       </div>
     );
   }
 
-class ProjetCreate extends Component {
+class TaskCreate extends Component {
   render() {
+    console.log();
     return (
       <div className="container">
-        <h4>Create a new project</h4>
-        <AddProject />
+        <h4>Create a new task</h4>
+        <AddTask project={this.props.location.state.project} />
       </div>
     );
   }
 }
 
-export default withRouter(ProjetCreate);
+export default withRouter(TaskCreate);

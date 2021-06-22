@@ -41,4 +41,4 @@ Notification.requestPermission( function(status) {
   var n = new Notification("title", {body: "notification body"}); // this also shows the notification
 });
 
-serviceWorker.register();
+serviceWorker.unregister();

@@ -6,6 +6,7 @@ import UserPage from "./component/user/UserPage";
 import ProfilPage from "./component/common/ProfilPage";
 import TaskList from "./component/task/TaskList";
 import TaskDetail from "./component/task/TaskDetail";
+import TaskCreate from "./component/task/TaskCreate";
 import ProjectList from "./component/project/ProjectList";
 import ProjectDetail from "./component/project/ProjectDetail";
 import Header from "./component/common/Header";
@@ -32,6 +33,9 @@ function App() {
           </Route>
           <Route path="/task/:id">
             <TaskDetail />
+          </Route>
+          <Route path="/new-task">
+            <TaskCreate />
           </Route>
           <Route path="/projects/">
             <ProjectList />

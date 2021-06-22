@@ -1,6 +1,7 @@
 import React from "react";
 import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/react-hooks";
 import { IoIosClose } from "react-icons/io";
 import { FaPlusSquare } from "react-icons/fa";
 import {style } from "../../style/main.scss";
@@ -19,11 +20,23 @@ const GET_PROJECTS = gql`
     }
   }
 `;
+const DELETE_PROJECT = gql`
+  mutation deleteProject($_id: ID!) {
+    deleteProject(_id: $_id)
+  }
+`;
 
 
 // Project QUERY
 function Projects(arg) {
   const { loading, error, data } = useQuery(GET_PROJECTS);
+  const [deleteProject] = useMutation(DELETE_PROJECT);
+
+  function arrayRemove(arr, value) { 
+    return arr.filter(function(ele){ 
+        return ele._id != value; 
+    });
+  }
 
   if (loading) return "Loading...";
   if (error) return `Error! ${error.message}`;
@@ -37,12 +50,13 @@ function Projects(arg) {
             <h3>
               {item.name}
             </h3>
-            <p>
-              {item.tasks.length} tasks in this project.
-            </p>
           </div>
           <div className="project-item-action">
-            <IoIosClose onClick={() => callMutation() } fontSize="1.75em"/>
+            <IoIosClose onClick={e => {
+            e.preventDefault();
+            deleteProject({ variables: { _id: item._id } });
+            data.projects = arrayRemove(data.projects,item._id);
+          }} fontSize="1.75em"/>
             <button className="btn-primary" onClick={() => changeRoute(arg.props,("/project/" + item._id.toString()) )}>View</button>
           </div>
         </li>
@@ -65,18 +79,11 @@ function Projects(arg) {
 
 
 function changeRoute(props, route) {
-  console.log(props, route);
   props.history.push(route)
 }
 
 function handleCreateNewProject(props) {
-  console.log(props)
   props.history.push('/new-project')
-  alert("Development information: \n Call a mutation to create a new project");
-}
-
-function callMutation() {
-  alert("Development information: \n Call a mutation to delete this project");
 }
 
 class ProjetList extends React.Component {
