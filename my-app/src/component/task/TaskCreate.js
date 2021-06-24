@@ -27,7 +27,7 @@ function AddTask({project}) {
           onSubmit={e => {
             e.preventDefault();
             addTask({ variables: { _id: projectId, input: {name: name.value, description: description.value, duration: duration.value }}});
-            history.push("/projects");
+            history.push("/project/"+projectId);
           }}
         >
         <p>Title:</p>

@@ -4,6 +4,7 @@ import { IoIosClose, IoMdCheckmark } from "react-icons/io";
 import { FaPlusSquare } from "react-icons/fa";
 import { withRouter } from "react-router-dom";
 import gql from "graphql-tag";
+import { useMutation } from "@apollo/react-hooks";
 
 const GET_PROJECT = gql`
   query Projects($id: ID!) {
@@ -20,17 +21,41 @@ const GET_PROJECT = gql`
     }
   }
 `;
+const DELETE_TASK = gql`
+  mutation deleteTask($_id: ID!) {
+    deleteTask(_id: $_id)
+  }
+`;
 
+const UPDATE_TASK = gql`
+  mutation updateTask($_id: ID!) {
+    updateTask(_id: $_id)
+  }
+`;
 function Project({ arg, id }) {
   const { loading, error, data } = useQuery(GET_PROJECT, {
     variables: { id }
   });
+  const [deleteTask] = useMutation(DELETE_TASK);
+  const [updateTask] = useMutation(UPDATE_TASK);
 
   if (loading) return "Loading...";
   if (error) return `Error! ${error.message}`;
 
   const project = data.project;
-  console.log(project.tasks)
+  function arrayRemove(arr, value) { 
+    return arr.filter(function(ele){ 
+        return ele._id != value; 
+    });
+  };
+  function updateTaskLocal(arr, value) { 
+    return arr.filter(function(ele){ 
+      if (ele._id == value) {
+        ele.status = 1;
+      }
+      return ele;
+    });
+  }
   return (
     <div>
       <h2>
@@ -42,8 +67,8 @@ function Project({ arg, id }) {
       {project.tasks != null ? 
       <ul>
         {project.tasks.map(item =>
-          <li key={item._id} value={item.name} className="project-list-item" onClick={() => changeRoute(arg, ("/task/" + item._id.toString()))}>
-            <div className="project-item-detail">
+          <li key={item._id} value={item.name} style={{background: item.status == 1 ? "lightseagreen" : "" }} className="project-list-item">
+            <div className="project-item-detail" onClick={() => changeRoute(arg, ("/task/" + item._id.toString()))}>
               <h3>
                 {item.name}
               </h3>
@@ -54,14 +79,24 @@ function Project({ arg, id }) {
             <div className="project-item-action">
               <IoIosClose
                 fontSize="1.75em"
-                color="tomato"
-                onClick={callMutationToCancelTask}
+                color="black"
+                onClick={e => {
+                  e.preventDefault();
+                  deleteTask({ variables: { _id: item._id } });
+                  project.tasks = arrayRemove(project.tasks,item._id);
+                }}
               />
+              { item.status != 1 ? 
               <IoMdCheckmark
                 fontSize="1.75em"
                 color="lightseagreen"
-                onClick={callMutationToValidateTask}
+                onClick={e => {
+                  e.preventDefault();
+                  updateTask({ variables: { _id: item._id } });
+                  project.tasks = updateTaskLocal(project.tasks,item._id);
+                }}
               />
+              : ""}
             </div>
           </li>
         )}
@@ -101,9 +136,6 @@ function Project({ arg, id }) {
 
 function callMutationToValidateTask() {
   alert("Development information: \n Call a mutation to validate this task");
-}
-function callMutationToCancelTask() {
-  alert("Development information: \n Call a mutation to cancel this task");
 }
 function callMutationToAddTask(props,projet) {
    props.history.push({
