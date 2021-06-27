@@ -22,7 +22,6 @@ const DELETE_USER = gql`
 `;
 
 function Users({ arg, id }) {
-  console.log(arg);
   const { loading, error, data } = useQuery(GET_USER, {
     variables: { id }
   });

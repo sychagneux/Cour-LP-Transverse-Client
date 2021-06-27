@@ -14,9 +14,6 @@ const GET_PROJECTS = gql`
     projects {
       _id
       name
-      tasks{
-        name
-      }
     }
   }
 `;

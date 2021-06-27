@@ -19,8 +19,7 @@ function AddTask({project}) {
     let projectId = project._id;
     let history = useHistory();
     const [addTask, { data }] = useMutation(ADD_TASK);
-    console.log(projectId)
-  
+    
     return (
       <div>
         <form
@@ -59,7 +58,6 @@ function AddTask({project}) {
 
 class TaskCreate extends Component {
   render() {
-    console.log();
     return (
       <div className="container">
         <h4>Create a new task</h4>

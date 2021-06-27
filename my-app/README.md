@@ -55,7 +55,6 @@ To see your mutation simply, call it in a render's component function.
 ``` js
 class ProjetDetail extends Component {
   render() {
-    console.log(this);
     return (
       <div className="container">
         <h4>Create a new project</h4>

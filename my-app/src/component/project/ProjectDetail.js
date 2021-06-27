@@ -17,6 +17,10 @@ const GET_PROJECT = gql`
         name
         description
         status
+        user {
+          _id
+          pseudo
+        }
       }
     }
   }
@@ -70,7 +74,7 @@ function Project({ arg, id }) {
           <li key={item._id} value={item.name} style={{background: item.status == 1 ? "lightseagreen" : "" }} className="project-list-item">
             <div className="project-item-detail" onClick={() => changeRoute(arg, ("/task/" + item._id.toString()))}>
               <h3>
-                {item.name}
+                {item.name} : {item.user != null ? "Assigné à "+item.user.pseudo : "Non assigné"}
               </h3>
               <p>
                 {item.description}
@@ -100,9 +104,6 @@ function Project({ arg, id }) {
             </div>
           </li>
         )}
-        <li className="" >
-          
-        </li>
       </ul>
     :
     <div
@@ -132,10 +133,6 @@ function Project({ arg, id }) {
       </div>
     </div>
   );
-}
-
-function callMutationToValidateTask() {
-  alert("Development information: \n Call a mutation to validate this task");
 }
 function callMutationToAddTask(props,projet) {
    props.history.push({

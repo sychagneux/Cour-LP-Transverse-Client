@@ -1,6 +1,7 @@
 .project-list-item {
   display: flex;
   flex-direction: row;
+  align-items: center;
   .project-item-action {
     display: flex;
     flex-direction: column;
@@ -66,4 +67,26 @@ input{
 
 .margin-v-m{
   padding: 2em;
+}
+.box {
+  border-radius: 6px;
+  font-weight: bold;
+  background-color: rgb(245, 139, 0);
+  color: black;
+  border: none;
+  padding: 12px;
+  font-size: 15px;
+  option {
+    padding: 30px;
+  }
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+.button-new-task{
+  margin: 0px 0px 0px 10px;
+  &:hover{
+    cursor: pointer;
+  }
 }
